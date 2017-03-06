@@ -12,7 +12,7 @@ import Bar from './Bar.vue';
 var routes = [
 	{ path: '/foo', component: Foo },
 	{ path: '/bar', component: Bar }
-]
+];
 
 var router = new VueRouter({
 	routes: routes
