@@ -9,5 +9,5 @@
 </template>
 
 <style lang="scss">
-	@import '~tachyons/css/tachyons.css';
+	@import '~tachyons/css/tachyons.min.css';
 </style>

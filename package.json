@@ -1,7 +1,7 @@
 {
   "name": "webpack-sample",
   "version": "1.0.0",
-  "description": "Vue front-end built with webpack, served via an Express server",
+  "description": "Vue front-end built with webpack, served by an Express server",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "author": "datarink",
+  "author": "kevkan",
   "license": "ISC",
   "dependencies": {
     "cross-env": "^3.2.3",
