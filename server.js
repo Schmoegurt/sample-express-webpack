@@ -1,7 +1,18 @@
 'use strict'
 
 var express = require('express');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config');
+
 var server = express();
+var compiler = webpack(webpackConfig);
+
+// Use webpackDevMiddleware to use webpack to compile files in-memory
+server.use(webpackDevMiddleware(compiler, {
+	publicPath: '/',
+	noInfo: true
+}));
 
 // Serve static files, including the Vue application
 server.use(express.static('public'));
