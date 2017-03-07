@@ -2,10 +2,13 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-	entry: './vue-src/app.js',
+	entry: [
+		'webpack-hot-middleware/client?http://localhost:5000/__webpack_hmr',
+		'./vue-src/app.js'
+	],
 	output: {
 		path: path.resolve(__dirname, './public'),
-		publicPath: '/public/',
+		publicPath: 'http://localhost:5000/public/',
 		filename: 'build.js'
 	},
 	module: {
@@ -25,5 +28,9 @@ module.exports = {
 			}
 		]
 	},
+	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoEmitOnErrorsPlugin()
+	],
 	devtool: '#eval-source-map'
 }

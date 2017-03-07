@@ -7,7 +7,7 @@
 
 <script>
 module.exports = {
-	name: 'Foo',
+	name: 'Bar',
 	data: function() {
 		return {
 			message: ''
@@ -20,7 +20,6 @@ module.exports = {
 		xhr.onload = function() {
 			self.message = JSON.parse(xhr.responseText);
 			self.message = self.message.data;
-			console.log(self.message);
 		}
 		xhr.send();
 	}
