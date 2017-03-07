@@ -1,8 +1,6 @@
 'use strict'
 
 var express = require('express');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
 
@@ -13,13 +11,16 @@ var compiler = webpack(webpackConfig);
 server.use(express.static('public'));
 
 // Use webpackDevMiddleware to use webpack to compile files in-memory
-server.use(webpackDevMiddleware(compiler, {
-	publicPath: webpackConfig.output.publicPath,
-	noInfo: true
-}));
-
-// Use webpack-hot-middleware for hot-reloading
-server.use(webpackHotMiddleware(compiler));
+// Use webpackHotMiddleware for hot-reloading
+if (process.env.NODE_ENV === 'development') {
+	var webpackDevMiddleware = require('webpack-dev-middleware');
+	var webpackHotMiddleware = require('webpack-hot-middleware');
+	server.use(webpackDevMiddleware(compiler, {
+		publicPath: webpackConfig.output.publicPath,
+		noInfo: true
+	}));
+	server.use(webpackHotMiddleware(compiler));
+}
 
 server.get("/api", function(req, res) {
 	return res.status(200).send({
